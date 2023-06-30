@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Prompt the user for the file path
+read -p "Enter the file path: " filepath
+
+# Check if the file exists
+if [ ! -f "$filepath" ]; then
+  echo "File not found: $filepath"
+  exit 1
+fi
+
+# Run quarto render command on the file
+quarto render "$filepath"
+
+# Commit and push changes to Git
+message="auto-commit from $USER@$(hostname -s) on $(date)"
+GIT=$(which git)
+REPO_DIR=~/org
+cd "${REPO_DIR}"
+"${GIT}" add --all .
+"${GIT}" commit -m "$message"
+gitPush=$("${GIT}" push -vvv git@github.com:my/repo.git master 2>&1)
+echo "$gitPush"
