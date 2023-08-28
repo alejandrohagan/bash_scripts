@@ -1,0 +1,68 @@
+
+set number
+
+set relativenumber
+
+set nocompatible
+
+imap jk <esc>
+
+imap kj <esc>
+
+imap jj <esc> 
+
+set ruler
+
+set cursorline
+
+set cursorcolumn
+
+set belloff=all
+
+set mouse=a
+
+set hlsearch
+
+set showcmd
+
+set backspace=indent,eol,start
+
+let mapleader = "/<space>"
+
+set autoindent
+
+set incsearch
+
+set tabstop=4
+
+set shiftwidth=4
+set expandtab
+
+
+set clipboard=unnamed
+
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+
+augroup myCmds
+    au!
+    autocmd VimEnter * silent !echo -ne "/e[2 q"
+augroup END
+
+nnoremap <leader>n :NERDTreeFocus<CR>
+
+set t_Co=256
+
+call plug#begin()
+
+Plug 'junegunn/vim-easy-align'
+
+Plug 'preservim/nerdtree'
+
+Plug 'vim-airline/vim-airline'
+
+Plug 'tpope/vim-surround'
+
+Plug 'vim-airline/vim-airline-themes'
+
+call plug#end()
